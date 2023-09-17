@@ -2,14 +2,14 @@ package com.example.demo.SpringJpa;
 
 import com.example.demo.Course;
 import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
 public class SpringJpaRepository {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     public void insert(Course course) {
