@@ -21,6 +21,7 @@ public class CommandLineRunnerClassjpa implements CommandLineRunner {
         System.out.println(springDataJpaRepository.findById(2l));
         System.out.println(springDataJpaRepository.findAll());
         System.out.println(springDataJpaRepository.findByName("learn spring"));
+        System.out.println(springDataJpaRepository.count());
 
     }
 }
