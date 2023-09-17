@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.SpringJpa.SpringJpaRepository;
+import com.example.demo.SpringdataJpa.SpringDataJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommandLineRunnerClassjpa implements CommandLineRunner {
     @Autowired
-    private SpringJpaRepository springJpaRepository;
+    private SpringDataJpaRepository springDataJpaRepository;
 
     @Override
     public void run(String... args) {
-        springJpaRepository.insert(new Course(1, "learn java", "salman"));
-        springJpaRepository.insert(new Course(2, "learn spring", "salman1"));
-        springJpaRepository.insert(new Course(3, "learn spring boot", "salman2"));
-        springJpaRepository.deleteById(1);
+        springDataJpaRepository.save(new Course(1, "learn java", "salman"));
+        springDataJpaRepository.save(new Course(2, "learn spring", "salman1"));
+        springDataJpaRepository.save(new Course(3, "learn spring boot", "salman2"));
+        springDataJpaRepository.deleteById(1l);
 
-        System.out.println(springJpaRepository.getById(3));
-        System.out.println(springJpaRepository.getById(2));
+        System.out.println(springDataJpaRepository.findById(3l));
+        System.out.println(springDataJpaRepository.findById(2l));
 
     }
 }
