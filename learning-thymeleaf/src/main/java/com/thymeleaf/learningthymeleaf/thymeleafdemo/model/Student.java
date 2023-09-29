@@ -1,30 +1,40 @@
 package com.thymeleaf.learningthymeleaf.thymeleafdemo.model;
 
-import java.util.List;
+import jakarta.persistence.*;
+import java.util.Set;
 
+@Entity
 public class Student {
-    private int studentId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long studentId;
     private String studentName;
     private String studentEmail;
     private String studentPhone;
-    private List<Course> courseList;
+    @ManyToMany
+    @JoinTable(
+            name = "students_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<Course> courseSet;
 
     public Student() {
     }
 
-    public Student(int studentId, String studentName, String studentEmail, String studentPhone, List<Course> courseList) {
+    public Student(long studentId, String studentName, String studentEmail, String studentPhone, Set<Course> courseList) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
         this.studentPhone = studentPhone;
-        this.courseList = courseList;
+        this.courseSet = courseList;
     }
 
-    public int getStudentId() {
+    public long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(long studentId) {
         this.studentId = studentId;
     }
 
@@ -52,11 +62,11 @@ public class Student {
         this.studentPhone = studentPhone;
     }
 
-    public List<Course> getCourseList() {
-        return courseList;
+    public Set<Course> getCourseSet() {
+        return courseSet;
     }
 
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
+    public void setCourseSet(Set<Course> courseSet) {
+        this.courseSet = courseSet;
     }
 }

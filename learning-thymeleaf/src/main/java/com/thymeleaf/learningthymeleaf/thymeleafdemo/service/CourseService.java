@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class CourseService {
-    private static List<Course> courseList = new ArrayList<>();
+   /* private static List<Course> courseList = new ArrayList<>();
     private static Tutor tutor1;
     private static Tutor tutor2;
     private static Tutor tutor3;
@@ -42,5 +42,5 @@ public class CourseService {
 
     public List<Course> findAll(){
         return courseList;
-    }
+    }*/
 }
