@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+</head>
+<body>
+<h1>Your Courses Are</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "c : ${course}">
+        <td th:text="${c.getCourseTitle()}"></td>
+        <td th:text="${c.getCourseDescription()}"></td>
+        <td th:text="${c.getCoursePrice()}"></td>
+        <td><a href="#">Buy</a> </td>
+    </tr>
+</table>
+</body>
+</html>
