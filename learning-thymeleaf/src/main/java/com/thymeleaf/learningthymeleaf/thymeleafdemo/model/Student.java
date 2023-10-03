@@ -11,6 +11,7 @@ public class Student {
     private String studentName;
     private String studentEmail;
     private String studentPhone;
+    private String studetPassword;
     @ManyToMany
     @JoinTable(
             name = "students_courses",
@@ -22,12 +23,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(long studentId, String studentName, String studentEmail, String studentPhone, Set<Course> courseList) {
+    public Student(long studentId, String studentName, String studentEmail, String studentPhone, Set<Course> courseList,String studentPassword) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
         this.studentPhone = studentPhone;
         this.courseSet = courseList;
+        this.studetPassword = studentPassword;
     }
 
     public long getStudentId() {
@@ -68,5 +70,11 @@ public class Student {
 
     public void setCourseSet(Set<Course> courseSet) {
         this.courseSet = courseSet;
+    }
+    public String getStudetPassword() {
+        return studetPassword;
+    }
+    public void setStudetPassword(String studetPassword) {
+        this.studetPassword = studetPassword;
     }
 }

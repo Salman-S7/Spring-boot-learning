@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutor-signup</title>
+</head>
+<body>
+<br/>
+<form th:action="@{tutor-signup}" th:object="${tutor}" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" required th:field="*{tutorName}">
+    <br/>
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" required th:field="*{tutorEmail}">
+    <br/>
+    <label for="phone">Phone</label>
+    <input type="tel" name="phone" id="phone" required th:field="*{tutorPhone}">
+    <br/>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required th:field="*{tutroPassword}">
+    <br/>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
