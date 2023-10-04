@@ -40,21 +40,39 @@ public class CommonController {
         studentRepository.save(student);
         return  "redirect:/login";
     }
-    @GetMapping("/login")
-    public String login(){
-        return "login";
+    @GetMapping("/student-login")
+    public String loginStudent(){
+        return "student-login";
     }
-    @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password){
+    @GetMapping("/tutor-login")
+    public String loginTotor(){
+        return "tutor-login";
+    }
+    @PostMapping("/student-login")
+    public String loginStudent(@RequestParam String email, @RequestParam String password,ModelMap modelMap){
         Student student = studentRepository.findByStudentEmail(email);
-        System.out.println(student.getStudentEmail()+",,,,"+student.getStudetPassword());
+        //System.out.println(student.getStudentEmail()+",,,,"+student.getStudetPassword());
         if(student==null || !student.getStudetPassword().equals(password)){
-            return "redirect:/login";
+            return "redirect:/student-login";
         }
         if(student.getStudentEmail().equals(email) && student.getStudetPassword().equals(password)){
-            return "dashboard";
+            modelMap.addAttribute("studentId", student.getStudentId());
+            return "student";
         }
-        return "redirect:/login";
+        return "redirect:/student-login";
+    }
+    @PostMapping("/tutor-login")
+    public String loginTutor(@RequestParam String email, @RequestParam String password){
+        Tutor tutor = tutorRepository.findByTutorEmail(email);
+        if(tutor==null){
+            return "redirect:/tutor-login";
+        }
+        if(tutor.getTutorEmail().equals(email) && tutor.getTutroPassword().equals(password)){
+            System.out.println(tutor.getTutorEmail()+",,,,"+tutor.getTutroPassword());
+
+            return "tutor";
+        }
+        return "redirect:/tutor-login";
     }
 
 }
