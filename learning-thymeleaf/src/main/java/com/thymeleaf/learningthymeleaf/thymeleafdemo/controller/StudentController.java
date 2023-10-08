@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/student")
 public class StudentController {
     private final CourseRepository courseRepository;
     public StudentController(CourseRepository courseRepository){
@@ -19,7 +18,7 @@ public class StudentController {
     @GetMapping("/courses")
     public String getAllCourses(ModelMap modelMap){
         List<Course> allCourses = courseRepository.findAll();
-        modelMap.addAttribute("course", allCourses);
-        return "Courses";
+        modelMap.addAttribute("courses", allCourses);
+        return "courses";
     }
 }
