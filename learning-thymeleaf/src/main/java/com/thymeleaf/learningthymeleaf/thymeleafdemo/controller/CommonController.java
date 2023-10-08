@@ -1,17 +1,19 @@
 package com.thymeleaf.learningthymeleaf.thymeleafdemo.controller;
 
+
 import com.thymeleaf.learningthymeleaf.thymeleafdemo.dao.StudentRepository;
 import com.thymeleaf.learningthymeleaf.thymeleafdemo.dao.TutorRepository;
 import com.thymeleaf.learningthymeleaf.thymeleafdemo.model.Student;
 import com.thymeleaf.learningthymeleaf.thymeleafdemo.model.Tutor;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CommonController {
-    private StudentRepository studentRepository;
-    private TutorRepository tutorRepository;
+    private final StudentRepository studentRepository;
+    private final TutorRepository tutorRepository;
     public CommonController(StudentRepository studentRepository,TutorRepository tutorRepository){
         this.studentRepository = studentRepository;
         this.tutorRepository = tutorRepository;
@@ -28,8 +30,9 @@ public class CommonController {
     @PostMapping("/tutor-signup")
     public String signupTutor(@ModelAttribute("tutor") Tutor tutor){
         tutorRepository.save(tutor);
-        return  "redirect:/login";
+        return  "redirect:/tutor-login";
     }
+
     @GetMapping("/student-signup")
     public String signupStudent(ModelMap modelMap){
         modelMap.addAttribute("student",new Student());
@@ -38,7 +41,7 @@ public class CommonController {
     @PostMapping("/student-signup")
     public String signupStudent(@ModelAttribute("student") Student student){
         studentRepository.save(student);
-        return  "redirect:/login";
+        return  "redirect:/student-login";
     }
     @GetMapping("/student-login")
     public String loginStudent(){
@@ -62,15 +65,15 @@ public class CommonController {
         return "redirect:/student-login";
     }
     @PostMapping("/tutor-login")
-    public String loginTutor(@RequestParam String email, @RequestParam String password){
+    public String loginTutor(@RequestParam String email, @RequestParam String password, HttpSession session){
         Tutor tutor = tutorRepository.findByTutorEmail(email);
         if(tutor==null){
+            System.out.println("is null");
             return "redirect:/tutor-login";
         }
         if(tutor.getTutorEmail().equals(email) && tutor.getTutroPassword().equals(password)){
-            System.out.println(tutor.getTutorEmail()+",,,,"+tutor.getTutroPassword());
-
-            return "tutor";
+            session.setAttribute("tutorId",tutor.getTutorId());
+            return "redirect:/tutor";
         }
         return "redirect:/tutor-login";
     }

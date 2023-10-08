@@ -9,9 +9,10 @@ public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long tutorId;
+    private final String role = "ROLE_TUTOR";
     private String tutorName;
     private String tutorEmail;
-    private String tutorPhone;
+    private String tutorUserName;
     private String tutroPassword;
     @OneToMany(mappedBy ="tutor")
     private Set<Course> courseSet;
@@ -19,11 +20,10 @@ public class Tutor {
     public Tutor(){
     }
 
-    public Tutor(long tutorId, String tutorName, String tutorEmail, String tutorPhone, String tutroPassword, Set<Course> courseSet) {
+    public Tutor(long tutorId, String tutorName, String tutorEmail, String tutroPassword, Set<Course> courseSet) {
         this.tutorId = tutorId;
         this.tutorName = tutorName;
         this.tutorEmail = tutorEmail;
-        this.tutorPhone = tutorPhone;
         this.tutroPassword = tutroPassword;
         this.courseSet = courseSet;
     }
@@ -52,14 +52,6 @@ public class Tutor {
         this.tutorEmail = tutorEmail;
     }
 
-    public String getTutorPhone() {
-        return tutorPhone;
-    }
-
-    public void setTutorPhone(String tutorPhone) {
-        this.tutorPhone = tutorPhone;
-    }
-
     public String getTutroPassword() {
         return tutroPassword;
     }
@@ -74,5 +66,13 @@ public class Tutor {
 
     public void setCourseSet(Set<Course> courseSet) {
         this.courseSet = courseSet;
+    }
+
+    public String getTutorUserName() {
+        return tutorUserName;
+    }
+
+    public void setTutorUserName(String tutorUserName) {
+        this.tutorUserName = tutorUserName;
     }
 }

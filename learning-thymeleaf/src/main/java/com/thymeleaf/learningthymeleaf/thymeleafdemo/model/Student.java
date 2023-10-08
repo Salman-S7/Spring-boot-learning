@@ -1,6 +1,7 @@
 package com.thymeleaf.learningthymeleaf.thymeleafdemo.model;
 
 import jakarta.persistence.*;
+
 import java.util.Set;
 
 @Entity
@@ -8,9 +9,10 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long studentId;
+    private final String role = "ROLE_STUDENT";
     private String studentName;
     private String studentEmail;
-    private String studentPhone;
+    private String studentUsername;
     private String studetPassword;
     @ManyToMany
     @JoinTable(
@@ -23,11 +25,10 @@ public class Student {
     public Student() {
     }
 
-    public Student(long studentId, String studentName, String studentEmail, String studentPhone, Set<Course> courseList,String studentPassword) {
+    public Student(long studentId, String studentName, String studentEmail, Set<Course> courseList, String studentPassword) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
-        this.studentPhone = studentPhone;
         this.courseSet = courseList;
         this.studetPassword = studentPassword;
     }
@@ -56,14 +57,6 @@ public class Student {
         this.studentEmail = studentEmail;
     }
 
-    public String getStudentPhone() {
-        return studentPhone;
-    }
-
-    public void setStudentPhone(String studentPhone) {
-        this.studentPhone = studentPhone;
-    }
-
     public Set<Course> getCourseSet() {
         return courseSet;
     }
@@ -71,10 +64,20 @@ public class Student {
     public void setCourseSet(Set<Course> courseSet) {
         this.courseSet = courseSet;
     }
+
     public String getStudetPassword() {
         return studetPassword;
     }
+
     public void setStudetPassword(String studetPassword) {
         this.studetPassword = studetPassword;
+    }
+
+    public String getStudentUsername() {
+        return studentUsername;
+    }
+
+    public void setStudentUsername(String studentUsername) {
+        this.studentUsername = studentUsername;
     }
 }

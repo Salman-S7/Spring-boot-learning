@@ -1,11 +1,6 @@
 package com.thymeleaf.learningthymeleaf.thymeleafdemo.service;
 
-import com.thymeleaf.learningthymeleaf.thymeleafdemo.model.Course;
-import com.thymeleaf.learningthymeleaf.thymeleafdemo.model.Student;
-import com.thymeleaf.learningthymeleaf.thymeleafdemo.model.Tutor;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class CourseService {
