@@ -7,5 +7,6 @@
 <body>
 <h1>Welcome Student!!</h1>
 <a th:href="@{/courses(studentId=${session.studentId})}">see courses</a>
+<a th:href="@{/boughtCourses(studentId=${session.studentId})}">Your Courses</a>
 </body>
 </html>

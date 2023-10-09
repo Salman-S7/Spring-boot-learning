@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class StudentController {
@@ -28,7 +29,10 @@ public class StudentController {
 
     public StudentController() {
     }
-
+    @GetMapping("/student")
+    public String getStudentPage(){
+        return "student";
+    }
     @GetMapping("/courses")
     public String getAllCourses(@RequestParam long studentId,ModelMap modelMap,HttpSession session){
         List<Course> allCourses = courseRepository.findAll();
@@ -48,5 +52,12 @@ public class StudentController {
         studentRepository.save(student);
         courseRepository.save(course);
         return "student";
+    }
+    @GetMapping("/boughtCourses")
+    public String seeBoughtCourses(@RequestParam long studentId,ModelMap modelMap){
+        Student student = studentRepository.findById(studentId).get();
+        Set<Course> boughtCourses = student.getCourseSet();
+        modelMap.addAttribute("boughtCourses", boughtCourses);
+        return "boughtCourses";
     }
 }
