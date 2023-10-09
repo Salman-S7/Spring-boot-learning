@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>Welcome Student!!</h1>
-<a th:href="@{/courses}">see courses</a>
+<a th:href="@{/courses(studentId=${session.studentId})}">see courses</a>
 </body>
 </html>

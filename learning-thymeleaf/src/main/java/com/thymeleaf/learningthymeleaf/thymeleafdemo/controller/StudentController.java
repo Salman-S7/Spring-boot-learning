@@ -30,16 +30,18 @@ public class StudentController {
     }
 
     @GetMapping("/courses")
-    public String getAllCourses(ModelMap modelMap){
+    public String getAllCourses(@RequestParam long studentId,ModelMap modelMap,HttpSession session){
         List<Course> allCourses = courseRepository.findAll();
         modelMap.addAttribute("courses", allCourses);
+        System.out.println(studentId);
+        session.setAttribute("studentId",studentId);
         return "courses";
     }
     @GetMapping("/buycourse")
-    public String buyCourse(@RequestParam long courseId, HttpSession session){
+    public String buyCourse(@RequestParam long courseId,@RequestParam long studentId,HttpSession session){
         Course course = courseRepository.findById(courseId).get();
         //long studentId = (long)session.getAttribute("studentId");
-        long studentId = 2;
+
         Student student = studentRepository.findById(studentId).get();
         student.getCourseSet().add(course);
         course.getStudentSet().add(student);
