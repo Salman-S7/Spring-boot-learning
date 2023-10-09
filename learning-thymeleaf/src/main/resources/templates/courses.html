@@ -21,7 +21,7 @@
         <td th:text="${c.getCourseDescription()}"></td>
         <td th:text="${c.getCoursePrice()}"></td>
         <td th:text="${c.getTutor.getTutorName()}"></td>
-        <td><a href="#">Buy</a> </td>
+        <td><a th:href="@{/buycourse(courseId=${c.getCourseId()})}">Buy Course</a></td>
     </tr>
 </table>
 </body>

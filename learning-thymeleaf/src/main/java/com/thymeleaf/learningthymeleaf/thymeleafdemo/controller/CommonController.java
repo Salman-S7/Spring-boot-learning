@@ -52,14 +52,14 @@ public class CommonController {
         return "tutor-login";
     }
     @PostMapping("/student-login")
-    public String loginStudent(@RequestParam String email, @RequestParam String password,ModelMap modelMap){
+    public String loginStudent(@RequestParam String email, @RequestParam String password,HttpSession session){
         Student student = studentRepository.findByStudentEmail(email);
         //System.out.println(student.getStudentEmail()+",,,,"+student.getStudetPassword());
         if(student==null || !student.getStudetPassword().equals(password)){
             return "redirect:/student-login";
         }
         if(student.getStudentEmail().equals(email) && student.getStudetPassword().equals(password)){
-            modelMap.addAttribute("studentId", student.getStudentId());
+            session.setAttribute("studentId", student.getStudentId());
             return "student";
         }
         return "redirect:/student-login";
