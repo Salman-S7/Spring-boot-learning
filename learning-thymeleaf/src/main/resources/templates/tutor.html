@@ -6,6 +6,8 @@
 </head>
 <body>
 <h1>welcome Tutor </h1>
+<a th:href="@{/courses}">All courses</a>
+<a th:href="@{/mycourses(tutorId=${session.tutorId})}">Your courses</a>
 <div id="addcourse">
     <form th:action="@{tutor}" th:object="${Course}" method="post">
         <label for="courseName">Course Name</label>
